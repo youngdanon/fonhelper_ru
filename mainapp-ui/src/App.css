@@ -1,0 +1,223 @@
+:root {
+    --primary-color: #4a65cc;
+    --primary-text-color: #d7e3f4;
+    --secondary-color: #a0b3e5;
+    --secondary-text-color: #7582a9;
+    --hover-color: rgba(179, 196, 234, 0.62);
+    --warning-color: #ffe7ab;
+    --alert-color: rgba(244, 102, 102, 0.62);
+    --error-text-color: #d80000;
+    --selector-hover : #364997;
+}
+
+.wrapper {
+    margin: 5% auto
+}
+
+.wrapper h1 {
+    margin-bottom: 3%;
+}
+
+/* -- Events filters -- */
+
+.filters .blocks-filters {
+    margin-bottom: 3%;
+}
+
+.filters .blocks-filters .filter-item {
+    text-align: center;
+    padding: 0.5em;
+}
+
+.filters .blocks-filters .submit-block{
+}
+
+.filters .blocks-filters .submit-block .btn{
+    /*margin: auto 0;*/
+    /*padding: 0.6em;*/
+    /*!*border-radius: 1em;*!*/
+    /*text-align: center;*/
+    /*font-weight: bold;*/
+    /*background-color: var(--primary-color);*/
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.filters .blocks-filters .submit-block .btn:hover{
+    color: var(--primary-text-color);
+    background-color: var(--primary-color);
+}
+
+.filters .blocks-filters .filter-item .description {
+    text-align: center;
+    padding: 0.5em;
+}
+
+.filters .blocks-filters .filter-item .value input {
+    max-width: 9em;
+    box-sizing: border-box;
+}
+
+.filters .sport-filters {
+    margin-bottom: 3%;
+}
+
+.sport-filters .selector {
+    display: inline-block;
+    margin: 0.3em;
+    padding: 0.6em;
+    /*border-radius: 1em;*/
+    text-align: center;
+    font-weight: bold;
+}
+.sport-filters .selector:hover {
+    background-color: var(--selector-hover)
+}
+
+.sport-filters .selected {
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+}
+
+.sport-filters .unselected {
+    background-color: var(--secondary-color);
+    color: var(--secondary-text-color);
+    text-decoration: line-through;
+}
+
+
+/* -- Events table --*/
+
+.events-table {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.events-table div {
+    padding: 0.2em;
+}
+
+.events-table .table-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--secondary-color);
+    /*border-radius: 0.5em;*/
+}
+
+.events-table .table-header .event-name {
+    padding: 0.5em 0.5em 0.5em 2em;
+}
+
+.events-table .table-header .event-name h6 {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.events-table .table-header .counter {
+    border: 0;
+    padding: 0.5em 0;
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+    /*border-radius: 1em;*/
+    vertical-align: middle;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.events-table .line {
+    margin: 0.5em 0 0.5em 0;
+    padding: 0;
+    /*border-radius: 0.5em;*/
+    transition: 200ms;
+    border: 1px #f8f9fa;
+
+}
+
+.events-table .line.k2-alert {
+    background-color: var(--alert-color);
+}
+
+.events-table .line:hover {
+    background-color: var(--hover-color);
+
+}
+
+.events-table .line .level-1 h6 {
+    font-weight: 650;
+    padding-left: 1em;
+}
+
+.events-table .line .level-2 {
+    padding-left: 2em;
+}
+
+.events-table .line .level-3 {
+    padding-left: 3em;
+}
+
+.events-table .line .level-4 {
+    padding-left: 4em;
+}
+
+.events-table .line .counters {
+    display: flex;
+}
+
+.events-table .line .counters .counter {
+    min-width: 9%;
+    margin: 0 auto;
+    text-align: center;
+    border-left: 1px solid var(--secondary-color);
+}
+
+.events-table .line .counters .counter p {
+    margin: 0;
+    padding: 0;
+}
+
+/* -- BlockLog layout --*/
+
+.events-table .table-body .blockLog-table {
+    padding-left: 1em;
+    transition: 300ms;
+}
+
+.events-table .table-body .blockLog-table .warning {
+    display: inline-block;
+    padding: 0.3em;
+    /*border-radius: 0.3em;*/
+    /*background-color: var(--warning-color);*/
+}
+
+.events-table .table-body .blockLog-table .log-item {
+    text-align: center;
+}
+
+/* -- Log in form --*/
+
+.login-form {
+    padding: 3em;
+}
+
+.login-form  .form-item{
+    padding: 1em;
+    margin: 2em 0;
+}
+
+.login-form .error{
+    color: var(--error-text-color);
+}
+
+.login-form button{
+    padding: 0.6em;
+    border-radius: 1em;
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+}
+
+.login-form button :disabled {
+    background-color: var(--secondary-color);
+    color: var(--secondary-text-color);
+}
