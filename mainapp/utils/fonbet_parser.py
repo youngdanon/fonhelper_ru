@@ -9,13 +9,14 @@ class Parser:
         self.current_version = 0
         self.updates = None
         self.sports = {}
+        self.timeout = 5
 
     def get_updates(self):
         params = {'lang': 'ru',
                   'scopeMarket': 1600,
                   'version': self.current_version}
         url = 'https://line510.bkfon-resources.com/events/list'
-        response = self.session.get(url, params=params)  # TEST, NOT STABLE
+        response = self.session.get(url, params=params, timeout=self.timeout)  # TEST, NOT STABLE
         response.raise_for_status()
         self.updates = response.json()
 
@@ -65,7 +66,7 @@ class Parser:
     def get_all_factors(self, event_id, blocked_factors):
         url = 'https://line13.bkfon-resources.com/events/event'
         params = {'lang': 'ru', 'eventId': event_id, 'scopeMarket': 1600, 'version': 0}
-        event_data = self.session.get(url, params=params)
+        event_data = self.session.get(url, params=params, timeout=self.timeout)
         event_data.raise_for_status()
         event_data = event_data.json()
         result = {}
