@@ -14,7 +14,6 @@ def get_blocklog_updates():
     for event_id, blocked_factors in blocked_events.items():
         comment = miscs[event_id]['comment']
         score = f"{miscs[event_id]['score1']}:{miscs[event_id]['score2']}"
-        print(datetime.datetime.now())
         for factor in blocked_factors:
             BlockLog(event_id=event_id,
                      factor=factor['factor_id'],
