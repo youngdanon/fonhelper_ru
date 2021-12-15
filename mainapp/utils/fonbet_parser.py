@@ -1,9 +1,12 @@
 import requests
 from django.conf import settings
+import copy
 
 
 class Parser:
     def __init__(self):
+        self.prev_blocks = {}
+        self.current_blocks = {}
         self.session = requests.Session()
         self.session.headers = settings.FONBET_SESSION_HEADERS
         self.current_version = 0
@@ -52,16 +55,20 @@ class Parser:
     def get_blocked_events(self):
         self.get_updates()
         live_events = self.get_live_events()
-        blocked_events_factors = {}
+
+        self.current_blocks = {}
 
         for block in self.updates['eventBlocks']:
             if block['eventId'] in live_events and block['state'] == 'partial':
-                blocked_events_factors.update({block['eventId']: block['factors']})
+                self.current_blocks[block['eventId']] = block['factors']
 
         blocked_factors = {}
-        for k, v in blocked_events_factors.items():
+        for k, v in self.current_blocks.items():
             blocked_factors.update(self.get_all_factors(k, v))
         return blocked_factors
+
+    def update_blocks_versions(self):
+        self.prev_blocks = copy.deepcopy(self.current_blocks)
 
     def get_all_factors(self, event_id, blocked_factors):
         url = 'https://line13.bkfon-resources.com/events/event'

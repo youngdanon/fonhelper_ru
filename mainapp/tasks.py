@@ -15,12 +15,14 @@ def get_blocklog_updates():
         comment = miscs[event_id]['comment']
         score = f"{miscs[event_id]['score1']}:{miscs[event_id]['score2']}"
         for factor in blocked_factors:
-            BlockLog(event_id=event_id,
-                     factor=factor['factor_id'],
-                     param=factor['param'],
-                     value=factor['value'],
-                     score=score,
-                     comment=comment).save()
+            if factor['factor_id'] not in parser.prev_blocks.get(event_id, []):
+                BlockLog(event_id=event_id,
+                         factor=factor['factor_id'],
+                         param=factor['param'],
+                         value=factor['value'],
+                         score=score,
+                         comment=comment).save()
+    parser.update_blocks_versions()
     return True
 
 
