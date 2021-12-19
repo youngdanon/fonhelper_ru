@@ -64,7 +64,10 @@ class Parser:
 
         blocked_factors = {}
         for k, v in self.current_blocks.items():
-            blocked_factors.update(self.get_all_factors(k, v))
+            all_factors = self.get_all_factors(k, v)
+            event_factors_amount = len(all_factors.get(k, []))
+            if 0 < event_factors_amount <= 4:
+                blocked_factors.update(all_factors)
         return blocked_factors
 
     def update_blocks_versions(self):
@@ -77,7 +80,6 @@ class Parser:
         event_data.raise_for_status()
         event_data = event_data.json()
         result = {}
-        # print(f"{event_id}: {len(blocked_factors)} factors, blocked_factors : {blocked_factors}")
         for response_event_factors in event_data['customFactors']:
             if response_event_factors['e'] == event_id:
                 blocked_factor_params = []
@@ -87,7 +89,7 @@ class Parser:
                                   'param': response_event_factor.get('pt'),
                                   'value': response_event_factor['v']}
                         blocked_factor_params.append(params)
-                result.update({response_event_factors['e']: blocked_factor_params})
+                result.update({event_id: blocked_factor_params})
                 break
         return result
 

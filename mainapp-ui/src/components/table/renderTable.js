@@ -75,7 +75,7 @@ export default function EventTable(props) {
             <Context.Provider value={{unselectSport, selectSport, countersFilterUpdate, repeatsFilterUpdate}}>
                 <Filters sportFilters={sportFilters}/>
             </Context.Provider>
-            <TableHeader liveEvents={liveEvents}/>
+            <TableHeader liveEvents={liveEvents.length}/>
             <div className="table-body">
                 {liveEvents.map(event => (
                     <EventLine props={{'event': event, 'k2value': k2}} key={event.id}/>

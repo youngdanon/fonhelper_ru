@@ -19,7 +19,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'get_updates': {
         'task': 'get_updates',
-        'schedule': 5.0,
+        'schedule': 2.0,
     },
     'delete_old_logs': {
         'task': 'delete_old_logs',
