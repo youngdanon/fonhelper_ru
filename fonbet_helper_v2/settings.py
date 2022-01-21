@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -133,38 +134,14 @@ FONBET_SESSION_HEADERS = {
     'Accept-Language': 'ru-RU'
 }
 
-FACTOR_NAMES = (
-    (921, "Победа 1"),
-    (3150, "Победа 1"),
-    (3144, "Победа 1"),
-    (922, "Ничья"),
-    (3152, "Ничья"),
-    (923, "Победа 2"),
-    (3151, "Победа 2"),
-    (3145, "Победа 2"),
-    (924, "1X"),
-    (1571, "Не ничья"),
-    (925, "2X"),
-    (927, "Фора 1"),
-    (937, "Фора 1"),
-    (1845, "Фора 1"),
-    (928, "Фора 2"),
-    (938, "Фора 2"),
-    (1846, "Фора 2"),
-    (930, "Тотал Б"),
-    (940, "Тотал Б"),
-    (1848, "Тотал Б"),
-    (1696, "Тотал Б"),
-    (1727, "Тотал Б"),
-    (931, "Тотал М"),
-    (941, "Тотал М"),
-    (1849, "Тотал М"),
-    (1697, "Тотал М"),
-    (1728, "Тотал М"),
-    (1809, "Инд.Тотал-1 Б"),)
+with open("fonbet_helper_v2/cfg/factor_names.json", "r", encoding='utf-8') as f:
+    factors_data = json.load(f)["factors"]
+    FACTOR_NAMES = []
+    for f_name in factors_data:
+        for f_id in factors_data[f_name]:
+            FACTOR_NAMES.append((f_id, f_name))
 
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BROKER_URL = f'redis://localhost:6379/0'
-print(CELERY_BROKER_URL)
