@@ -80,7 +80,7 @@ class Parser:
         event_data.raise_for_status()
         event_data = event_data.json()
         result = {}
-        for response_event_factors in event_data['customFactors']:
+        for response_event_factors in event_data.get('customFactors', []):
             if response_event_factors['e'] == event_id:
                 blocked_factor_params = []
                 for response_event_factor in response_event_factors['factors']:
