@@ -2,6 +2,8 @@ import requests
 from django.conf import settings
 import copy
 
+API_URL = 'https://line02w.bk6bba-resources.com'
+
 
 class Parser:
     def __init__(self):
@@ -18,7 +20,7 @@ class Parser:
         params = {'lang': 'ru',
                   'scopeMarket': 1600,
                   'version': self.current_version}
-        url = 'https://line510.bkfon-resources.com/events/list'
+        url = f'{API_URL}/events/list'
         response = self.session.get(url, params=params, timeout=self.timeout)  # TEST, NOT STABLE
         response.raise_for_status()
         self.updates = response.json()
@@ -74,7 +76,7 @@ class Parser:
         self.prev_blocks = copy.deepcopy(self.current_blocks)
 
     def get_all_factors(self, event_id, blocked_factors):
-        url = 'https://line13.bkfon-resources.com/events/event'
+        url = f'{API_URL}/events/event'
         params = {'lang': 'ru', 'eventId': event_id, 'scopeMarket': 1600, 'version': 0}
         event_data = self.session.get(url, params=params, timeout=self.timeout)
         event_data.raise_for_status()
